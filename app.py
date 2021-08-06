@@ -88,8 +88,9 @@ st.write(quote.describe())
 
 #Main 
 try:
- date_str_start = st.text_input("Please enter the start day ", "2021-06-09")
- date_str_end = st.text_input("Please enter the end day" , "2021-06-10")
+ st.subheader("Enter the days and make sure that the start and the end date are both on weekdays.")
+ date_str_start = st.text_input("Please enter the start day(yyyy-mm-dd) ", "2021-06-09")
+ date_str_end = st.text_input("Please enter the end day(yyyy-mm-dd)" , "2021-06-10")
  #Actual quote of stock
  quote2 = yf.download(user_input,start=date_str_start, end=date_str_end)
  actual_quote = quote2[['Close']].to_numpy()
