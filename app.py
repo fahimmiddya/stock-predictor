@@ -88,21 +88,22 @@ st.write(quote.describe())
 
 #Choosing the date
 st.header("Pick Date")
-date = st.date_input("Please enter a week day.", value=date(2021, 5, 4))
+date_str1 = st.date_input("Please enter the start day.", value=date(2021, 5, 4))
+date_str2 = st.date_input("Please enter the end day.", value=date(2021, 5, 4))
 dt = date.today() #Current date
 
 #Main 
 if date.weekday() < 5 and date.weekday() != 0 and date < dt:
- date_str1 = "2021-06-09"
- date_str2 = "2021-06-10"
+ date_str_start = date_str1.strftime("%Y-%m-%d")
+ date_str_end = date_str1.strftime("%Y-%m-%d")
  #Actual quote of stock
- quote2 = yf.download(user_input,start=date_str1, end=date_str2)
+ quote2 = yf.download(user_input,start=date_str_start, end=date_str_end)
  actual_quote = quote2[['Close']].to_numpy()
  #actual_quote[0][0] = np.format_float_positional(actual_quote[0][0], precision=3)
  actual_open = quote2[['Open']].to_numpy()
  #actual_open[0][0] = np.format_float_positional(actual_open[0][0], precision=3)
  #Getting the predicted quote
- quote_p = yf.download(user_input,start=date_str1, end=date_str2)
+ quote_p = yf.download(user_input,start=date_str_start, end=date_str_end)
  new_quote_p = quote_p.filter(['Close']) 
  last_100_days = new_quote_p[-100:].values
  scalar = MinMaxScaler(feature_range=(0,1))
