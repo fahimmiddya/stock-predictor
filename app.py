@@ -93,7 +93,7 @@ date_str2 = st.date_input("Please enter the end day.", value=date(2021, 5, 4))
 dt = date.today() #Current date
 
 #Main 
-if date.weekday() < 5 and date.weekday() != 0 and date < dt:
+if date_str1.weekday() < 5 and date_str1.weekday() != 0 and date_str1 < dt:
  date_str_start = date_str1.strftime("%Y-%m-%d")
  date_str_end = date_str1.strftime("%Y-%m-%d")
  #Actual quote of stock
