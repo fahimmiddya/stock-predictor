@@ -93,15 +93,16 @@ dt = date.today() #Current date
 
 #Main 
 if date.weekday() < 5 and date.weekday() != 0 and date < dt:
- date_str = date.strftime("%Y-%m-%d")
+ date_str1 = "2021-06-09"
+ date_str2 = "2021-06-10"
  #Actual quote of stock
- quote2 = yf.download(user_input,start=date_str, end=date_str)
+ quote2 = yf.download(user_input,start=date_str1, end=date_str2)
  actual_quote = quote2[['Close']].to_numpy()
  #actual_quote[0][0] = np.format_float_positional(actual_quote[0][0], precision=3)
  actual_open = quote2[['Open']].to_numpy()
  #actual_open[0][0] = np.format_float_positional(actual_open[0][0], precision=3)
  #Getting the predicted quote
- quote_p = yf.download(user_input,start=date_str, end=date_str)
+ quote_p = yf.download(user_input,start=date_str1, end=date_str2)
  new_quote_p = quote_p.filter(['Close']) 
  last_100_days = new_quote_p[-100:].values
  scalar = MinMaxScaler(feature_range=(0,1))
