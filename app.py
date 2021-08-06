@@ -86,14 +86,6 @@ quote = yf.download(user_input, start, end)
 st.header('Description of Data from 2000 - 2021')
 st.write(quote.describe())
 
-#Choosing the date
-st.header("Live Data")
-dt_start = date.today().strftime("%Y-%m-%d") #Current date
-dt_end = (date.today() + timedelta(days=1)).strftime("%Y-%m-%d")
-live = yf.download(user_input,start=dt_start, end=dt_end)
-st.write(" Today's Open : " , live[['Open']].to_numpy())
-st.write(" Today's Close : " , live[['Close']].to_numpy())
-
 #Main 
 try:
  date_str_start = st.text_input("Please enter the start day ", "2021-06-09")
