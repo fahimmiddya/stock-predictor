@@ -92,17 +92,17 @@ date_str1 = st.date_input("Please enter the date.", value=date(2021, 5, 4))
 dt = date.today() #Current date
 
 #Main 
-if date_str1.weekday() < 5 and date_str1.weekday() != 0 and date_str1 < dt:
+try:
  date_str_start = st.text_input("Please enter the start day ", "2021-06-09")
  date_str_end = st.text_input("Please enter the end day" , "2021-06-10")
  #Actual quote of stock
- quote2 = yf.download(user_input,start=date_str_start, end=date_str_start)
+ quote2 = yf.download(user_input,start=date_str_start, end=date_str_end)
  actual_quote = quote2[['Close']].to_numpy()
  actual_quote[0][0] = np.format_float_positional(actual_quote[0][0], precision=3)
  actual_open = quote2[['Open']].to_numpy()
  actual_open[0][0] = np.format_float_positional(actual_open[0][0], precision=3)
  #Getting the predicted quote
- quote_p = yf.download(user_input,start=date_str_start, end=date_str_start)
+ quote_p = yf.download(user_input,start=date_str_start, end=date_str_end)
  new_quote_p = quote_p.filter(['Close']) 
  last_100_days = new_quote_p[-100:].values
  scalar = MinMaxScaler(feature_range=(0,1))
@@ -133,5 +133,5 @@ if date_str1.weekday() < 5 and date_str1.weekday() != 0 and date_str1 < dt:
  st.subheader('Predicted Price vs Original Price')
  visualisation4(quote)
 
-else:
+except ValueError:
  st.error("Please enter a valid date.")
