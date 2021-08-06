@@ -88,14 +88,13 @@ st.write(quote.describe())
 
 #Choosing the date
 st.header("Pick Date")
-date_str1 = st.date_input("Please enter the start day.", value=date(2021, 5, 4))
-date_str2 = st.date_input("Please enter the end day.", value=date(2021, 5, 4))
+date_str1 = st.date_input("Please enter the date.", value=date(2021, 5, 4))
 dt = date.today() #Current date
 
 #Main 
 if date_str1.weekday() < 5 and date_str1.weekday() != 0 and date_str1 < dt:
- date_str_start = date_str1.strftime("%Y-%m-%d")
- date_str_end = date_str1.strftime("%Y-%m-%d")
+ date_str_start = st.text_input("Please enter the start day ", "2021-06-09")
+ date_str_end = st.text_input("Please enter the end day" , "2021-06-10")
  #Actual quote of stock
  quote2 = yf.download(user_input,start=date_str_start, end=date_str_end)
  actual_quote = quote2[['Close']].to_numpy()
