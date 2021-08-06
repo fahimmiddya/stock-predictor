@@ -98,9 +98,9 @@ if date_str1.weekday() < 5 and date_str1.weekday() != 0 and date_str1 < dt:
  #Actual quote of stock
  quote2 = yf.download(user_input,start=date_str_start, end=date_str_end)
  actual_quote = quote2[['Close']].to_numpy()
- #actual_quote[0][0] = np.format_float_positional(actual_quote[0][0], precision=3)
+ actual_quote[0][0] = np.format_float_positional(actual_quote[0][0], precision=3)
  actual_open = quote2[['Open']].to_numpy()
- #actual_open[0][0] = np.format_float_positional(actual_open[0][0], precision=3)
+ actual_open[0][0] = np.format_float_positional(actual_open[0][0], precision=3)
  #Getting the predicted quote
  quote_p = yf.download(user_input,start=date_str_start, end=date_str_end)
  new_quote_p = quote_p.filter(['Close']) 
@@ -114,13 +114,13 @@ if date_str1.weekday() < 5 and date_str1.weekday() != 0 and date_str1 < dt:
  pred_price = model.predict(X_test)
  pred_price = scalar.inverse_transform(pred_price)
  predicted = pred_price
- #predicted[0][0] = np.format_float_positional(predicted[0][0], precision=2)
+ predicted[0][0] = np.format_float_positional(predicted[0][0], precision=2)
 
  #Outputting the stock prices
  st.header("Price of Stock ")
- st.write('Opening Price of the Stock : ' ,actual_open )
- st.write('Actual Closing Price of the Stock : ' , actual_quote)
- st.write('Predicted Closing Price of the Stock : ' , predicted)
+ st.write('Opening Price of the Stock : ' ,actual_open[0][0])
+ st.write('Actual Closing Price of the Stock : ' , actual_quote[0][0])
+ st.write('Predicted Closing Price of the Stock : ' , predicted[0][0])
 
  #Visualisation
  st.header("Visualisations")
