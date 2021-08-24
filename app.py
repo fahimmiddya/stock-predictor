@@ -34,7 +34,7 @@ def visualisation2(q):
  plt.plot(q.Close , linewidth = 3)
  plt.xlabel("Year")
  plt.ylabel("Price")
- plt.legend(["Closing Price", "Moivng Average 100"], loc ="lower right")
+ plt.legend(["Closing Price", "Moving Average 100"], loc ="lower right")
  st.pyplot(fig)
 
 def visualisation3(q):
